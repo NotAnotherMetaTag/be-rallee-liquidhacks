@@ -1,4 +1,4 @@
-package liquidhacks.rallee.controller.rest;
+package liquidhacks.rallee.ralleebe.controller.rest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

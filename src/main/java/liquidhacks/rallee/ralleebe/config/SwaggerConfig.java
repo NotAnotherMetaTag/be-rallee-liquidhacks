@@ -1,4 +1,4 @@
-package liquidhacks.rallee.config;
+package liquidhacks.rallee.ralleebe.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +19,8 @@ public class SwaggerConfig
 	{
 		return new Docket(DocumentationType.SWAGGER_2) 
 				.select()                                  
-				.apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))              
-				.paths(PathSelectors.any())
-				.build();
+                .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))              
+                .paths(PathSelectors.any())
+                .build();
 	}
 }
