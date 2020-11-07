@@ -5,10 +5,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
+
 import liquidhacks.rallee.ralleebe.model.UserDTO;
 import liquidhacks.rallee.ralleebe.repository.LoginDB;
 
@@ -20,8 +22,15 @@ class Register {
 		this.userRepo = userRepo;
 	}
 
-	@PostMapping("/register")
-	public void register(String username, String password){
+	@GetMapping("/signup")
+	public String showRegistrationForm(WebRequest request, Model model) {
+	    UserDTO userDto = new UserDTO();
+	    model.addAttribute("user", userDto);
+	    return "registration";
+	}
+	
+	@PostMapping("/signup")
+	public void signup(String username, String password){
 		UserDTO user = new UserDTO();
 		user.setPassword(new BCryptPasswordEncoder().encode(password));
 		user.setId(UUID.randomUUID());
@@ -40,4 +49,5 @@ class Register {
 	public List<UserDTO> getAllRegisteredUsers() {
 		return userRepo.findAll();
 	}
+	
 }
