@@ -1,15 +1,12 @@
 package liquidhacks.rallee.ralleebe.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Repository;
-
 import liquidhacks.rallee.ralleebe.model.Player;
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
+public interface PlayerDAO extends CrudRepository<Player, String> {
 
- 
-@Repository
-public class PlayerDAO {
+  public Player findByUsername(String username);
+  public List<Player> findByEmail(String email);
+
 }
