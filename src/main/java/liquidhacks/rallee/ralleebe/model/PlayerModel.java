@@ -1,17 +1,17 @@
 package liquidhacks.rallee.ralleebe.model;
 
-public class Player {
+public class PlayerModel {
 
 	private String username;
 	private String firstName;
 	private String lastName;
 	private String email;
 
-	public Player() {
+	public PlayerModel() {
 
 	}
 
-	public Player(String username, String firstName, String lastName, String email) {
+	public PlayerModel(String username, String firstName, String lastName, String email) {
 		super();
 		this.username = username;
 		this.firstName = firstName;
