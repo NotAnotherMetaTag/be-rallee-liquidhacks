@@ -12,13 +12,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import liquidhacks.rallee.ralleebe.model.enums.LanguagesEnum;
 
-@DynamoDBTypeConverted(converter = liquidhacks.rallee.ralleebe.config.ObjectConverter.class)
 @DynamoDBTable(tableName = "Player")
 public class PlayerModel {
 
 	private String username;
 	@NotNull
-    @NotEmpty
+	@NotEmpty
 	private String email;
 	private List<LanguagesEnum> languages;
 	private List<GameModel> gamesPlayed;
@@ -29,7 +28,6 @@ public class PlayerModel {
 
 	}
 
-	
 	public PlayerModel(String username, String email, List<LanguagesEnum> languages, List<GameModel> gamesPlayed,
 			String profilePictureURL, String location) {
 		super();
@@ -50,7 +48,6 @@ public class PlayerModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getUsername() {
 		return username;
@@ -91,6 +88,5 @@ public class PlayerModel {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
 
 }

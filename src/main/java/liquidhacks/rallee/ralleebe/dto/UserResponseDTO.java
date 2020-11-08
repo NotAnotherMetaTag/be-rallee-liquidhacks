@@ -8,7 +8,7 @@ import liquidhacks.rallee.ralleebe.model.Role;
 public class UserResponseDTO {
 
   @ApiModelProperty(position = 0)
-  private Integer id;
+  private String id;
   @ApiModelProperty(position = 1)
   private String username;
   @ApiModelProperty(position = 2)
@@ -16,11 +16,11 @@ public class UserResponseDTO {
   @ApiModelProperty(position = 3)
   List<Role> roles;
 
-  public Integer getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(String id) {
     this.id = id;
   }
 

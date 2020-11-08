@@ -2,9 +2,9 @@ package liquidhacks.rallee.ralleebe.controller.rest;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,9 +33,6 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @Autowired
-  private ModelMapper modelMapper;
-
   @PostMapping("/signin")
   @ApiOperation(value = "${UserController.signin}")
   @ApiResponses(value = { //
@@ -54,7 +51,7 @@ public class UserController {
       @ApiResponse(code = 403, message = "Access denied"), //
       @ApiResponse(code = 422, message = "Username is already in use") })
   public String signup(@ApiParam("Signup User") @RequestBody UserDataDTO user) {
-    return userService.signup(modelMapper.map(user, User.class));
+    return userService.signup(new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getRoles()));
   }
 
   @DeleteMapping(value = "/{username}")
@@ -80,7 +77,13 @@ public class UserController {
       @ApiResponse(code = 404, message = "The user doesn't exist"), //
       @ApiResponse(code = 500, message = "Expired or invalid JWT token") })
   public UserResponseDTO search(@ApiParam("Username") @PathVariable String username) {
-    return modelMapper.map(userService.search(username), UserResponseDTO.class);
+    User user = userService.search(username);
+    UserResponseDTO response = new UserResponseDTO();
+    response.setId(user.getId());
+    response.setEmail(user.getEmail());
+    response.setUsername(user.getUsername());
+    response.setRoles(user.getRoles());
+    return response;
   }
 
   @GetMapping(value = "/me")
@@ -92,7 +95,13 @@ public class UserController {
       @ApiResponse(code = 403, message = "Access denied"), //
       @ApiResponse(code = 500, message = "Expired or invalid JWT token") })
   public UserResponseDTO whoami(HttpServletRequest req) {
-    return modelMapper.map(userService.whoami(req), UserResponseDTO.class);
+    User user = userService.whoami(req);
+    UserResponseDTO response = new UserResponseDTO();
+    response.setId(user.getId());
+    response.setEmail(user.getEmail());
+    response.setUsername(user.getUsername());
+    response.setRoles(user.getRoles());
+    return response;
   }
 
   @GetMapping("/refresh")

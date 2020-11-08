@@ -1,19 +1,12 @@
 package liquidhacks.rallee.ralleebe;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import liquidhacks.rallee.ralleebe.model.Role;
-import liquidhacks.rallee.ralleebe.model.User;
 import liquidhacks.rallee.ralleebe.service.UserService;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Properties;
 
 @SpringBootApplication
@@ -49,10 +42,5 @@ public class RalleeBeApplication {
 		}
 
 		application.run(args);
-	}
-
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
 	}
 }

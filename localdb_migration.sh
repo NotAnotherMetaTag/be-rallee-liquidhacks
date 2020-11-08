@@ -1,9 +1,9 @@
 aws dynamodb create-table \
  --table-name User \
  --attribute-definitions \
-     AttributeName=id,AttributeType=S \
+     AttributeName=Id,AttributeType=S \
  --key-schema \
-     AttributeName=id,KeyType=HASH \
+     AttributeName=Id,KeyType=HASH \
  --provisioned-throughput \
      ReadCapacityUnits=5,WriteCapacityUnits=5 \
  --region us-west-1 \
