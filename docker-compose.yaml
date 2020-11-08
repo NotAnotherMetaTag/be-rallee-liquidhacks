@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "dynamodb"
+    command: ["./wait-for-it.sh", "dynamodb:8000"]
+    links:
+      - dynamodb:database
+
+  dynamodb:
+    image: amazon/dynamodb-local:latest
+    command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-inMemory"]
+    ports:
+      - "8000:8000"
