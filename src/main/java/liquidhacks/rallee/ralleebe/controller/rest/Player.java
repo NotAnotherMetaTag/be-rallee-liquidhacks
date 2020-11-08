@@ -44,6 +44,11 @@ class Player {
 		//TODO
 		return "GET";
 	}
+	@GetMapping("/players/{location}")
+	public String getPlayersByLocation(String location){
+		//TODO
+		return "GET";
+	}
 	@GetMapping("/players/{maxRank}")
 	public String getPlayersByMaxRank(String maxRank){
 		//TODO
