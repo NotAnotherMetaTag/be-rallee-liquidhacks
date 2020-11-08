@@ -8,7 +8,7 @@ import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 
 @EnableScan
-public interface LoginDB extends CrudRepository<UserDTO, String> {
+public interface LoginService extends CrudRepository<UserDTO, String> {
 
 	@SuppressWarnings("unchecked")
 	public UserDTO save(UserDTO user);

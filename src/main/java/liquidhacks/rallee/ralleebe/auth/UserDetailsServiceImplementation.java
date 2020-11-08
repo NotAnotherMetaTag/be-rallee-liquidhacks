@@ -6,14 +6,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import liquidhacks.rallee.ralleebe.model.UserDTO;
-import liquidhacks.rallee.ralleebe.repository.LoginDB;
+import liquidhacks.rallee.ralleebe.repository.LoginService;
 
 import java.util.Collections;
 
 @Component
 public class UserDetailsServiceImplementation implements UserDetailsService {
-	private LoginDB userRepository;
-	public UserDetailsServiceImplementation(LoginDB userRepository)    {
+	private LoginService userRepository;
+	public UserDetailsServiceImplementation(LoginService userRepository)    {
 		this.userRepository = userRepository;
 	}
 

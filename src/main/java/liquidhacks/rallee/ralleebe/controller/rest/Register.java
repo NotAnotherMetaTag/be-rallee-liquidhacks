@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 import liquidhacks.rallee.ralleebe.model.UserDTO;
-import liquidhacks.rallee.ralleebe.repository.LoginDB;
+import liquidhacks.rallee.ralleebe.repository.LoginService;
 
 @RestController
 class Register {
-	private LoginDB userRepo;
+	private LoginService userRepo;
 	
-	public Register(LoginDB userRepo) {
+	public Register(LoginService userRepo) {
 		this.userRepo = userRepo;
 	}
 
