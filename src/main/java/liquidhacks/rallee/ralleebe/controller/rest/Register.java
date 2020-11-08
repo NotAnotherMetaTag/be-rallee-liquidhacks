@@ -30,11 +30,11 @@ class Register {
 	}
 	
 	@PostMapping("/signup")
-	public void signup(String username, String password){
+	public void signup(String email, String password){
 		UserDTO user = new UserDTO();
 		user.setPassword(new BCryptPasswordEncoder().encode(password));
 		user.setId(UUID.randomUUID());
-		user.setUsername(username);
+		user.setEmail(email);
 		userRepo.save(user);
 	}
 	

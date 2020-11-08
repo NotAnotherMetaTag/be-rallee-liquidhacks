@@ -34,7 +34,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 		try		{
 			UserDTO creds = new ObjectMapper().readValue(request.getInputStream(), UserDTO.class);
-			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(),new ArrayList<>()));
+			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword(),new ArrayList<>()));
 		}
 		catch(IOException e)		{
 			throw new RuntimeException("Could not read request" + e);

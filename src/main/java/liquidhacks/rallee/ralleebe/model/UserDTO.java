@@ -19,11 +19,7 @@ public class UserDTO
 	private UUID id;
 	@NotNull
     @NotEmpty
-	private String username;
-	@NotNull
-    @NotEmpty
 	private String password;
-	private String matchingPassword;
 	@NotNull
     @NotEmpty
 	private String email;
@@ -39,21 +35,12 @@ public class UserDTO
 	}
 
 	@DynamoDBAttribute
-	public String getUsername() {
-		return username;
-	}
-
-	@DynamoDBAttribute
 	public String getPassword() {
 		return password;
 	}
 
 	public void setId(UUID id) {
 		this.id = id;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public void setPassword(String password) {
@@ -66,14 +53,6 @@ public class UserDTO
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getMatchingPassword() {
-		return matchingPassword;
-	}
-
-	public void setMatchingPassword(String matchingPassword) {
-		this.matchingPassword = matchingPassword;
 	}
 
 }
