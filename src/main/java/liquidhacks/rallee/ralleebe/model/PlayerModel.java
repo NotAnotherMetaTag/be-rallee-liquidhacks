@@ -22,7 +22,7 @@ public class PlayerModel {
 	private String email;
 	private List<LanguagesEnum> languages;
 	private List<GameModel> gamesPlayed;
-	private String profilePictureURL;
+	private String profilePictureURL = "";
 	private String location;
 
 	public PlayerModel() {

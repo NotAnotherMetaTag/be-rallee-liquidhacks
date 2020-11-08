@@ -33,15 +33,21 @@ class Register {
 	public void signup(String email, String password){
 		UserDTO user = new UserDTO();
 		user.setPassword(new BCryptPasswordEncoder().encode(password));
+		//user.setPassword(password);
 		user.setId(UUID.randomUUID());
 		user.setEmail(email);
 		userRepo.save(user);
 	}
 	
+	@PostMapping("/login")
+	public void login(String email, String password) {
+		
+	}
+	
 	@GetMapping("/test")
-	public Optional<UserDTO> getRegisteredByUsername(String id) {
+	public Optional<UserDTO> getRegisteredByUsername(String email) {
 
-		return userRepo.findById(id);
+		return userRepo.findByEmail(email);
 	}
 	
 	
