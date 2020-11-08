@@ -43,7 +43,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				"/swagger-ui.html",
 				"/webjars/**",
 				"/signup",
-				"/login");
+				"/login/",
+				"/player");
 	}
 
 	protected void configure(HttpSecurity httpSecurity) throws Exception    {
@@ -55,6 +56,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.and().addFilter(new AuthenticationFilter(authenticationManager()))
 		.addFilter(new AuthorizationFilter(authenticationManager()))
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		
+		httpSecurity.authorizeRequests().and().formLogin()//
+        // Submit URL of login page.
+        .loginPage("/login").usernameParameter("email").passwordParameter("password").permitAll()
+        .loginProcessingUrl("/doLogin")
+        .successForwardUrl("/postLogin")
+        .defaultSuccessUrl("/swagger-ui.html")//
+        .failureUrl("/loginFailed")//
+        // Config for Logout Page
+        .and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful").permitAll()
+        .and().csrf().disable();
+		
 	}
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception    {
 		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);

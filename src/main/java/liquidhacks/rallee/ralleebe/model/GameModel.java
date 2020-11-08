@@ -2,7 +2,18 @@ package liquidhacks.rallee.ralleebe.model;
 
 import java.util.List;
 
-class GameModel {
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+@DynamoDBTable(tableName = "Game")
+public class GameModel {
+	@NotNull
+    @NotEmpty
+	private String email;
 	private String name;
 	//private List<AvailabilityDays> availability;
 	private boolean isCompetitive;
@@ -14,7 +25,7 @@ class GameModel {
 		
 	}
 	
-	public GameModel(String name, boolean isCompetitive, boolean isCasual) {
+	public GameModel(String email, String name, boolean isCompetitive, boolean isCasual, int rank, List<String> gamePositions) {
 		super();
 		this.name = name;
 		//this.availability = availability;
@@ -24,6 +35,16 @@ class GameModel {
 		this.gamePositions = gamePositions;
 	}
 
+	@DynamoDBHashKey
+	@DynamoDBAttribute
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getName() {
 		return name;
 	}
