@@ -1,8 +1,19 @@
 package liquidhacks.rallee.ralleebe;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import liquidhacks.rallee.ralleebe.model.Role;
+import liquidhacks.rallee.ralleebe.model.User;
+import liquidhacks.rallee.ralleebe.service.UserService;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 
 @SpringBootApplication
@@ -10,29 +21,38 @@ import java.util.Properties;
 public class RalleeBeApplication {
 	static final String SPRING_PROFILE_PROPERTY = "spring.profiles.active";
 
+	@Autowired
+	UserService userService;
+
 	public static void main(String[] args) {
 
-		SpringApplication application = new SpringApplication(RalleeBeApplication.class)  ;
+		SpringApplication application = new SpringApplication(RalleeBeApplication.class);
 
 		String tomcatEnv = System.getenv("TOMCATENV");
-		// if a TOMCATENV was set, then get it's value and set the appropriate Spring profile
-		if(tomcatEnv != null) {
+		// if a TOMCATENV was set, then get it's value and set the appropriate Spring
+		// profile
+		if (tomcatEnv != null) {
 			Properties properties = new Properties();
 			switch (tomcatEnv) {
-			case "DEV":
-				properties.put(SPRING_PROFILE_PROPERTY,"dev");
-				break;
-			case "INT":
-				properties.put(SPRING_PROFILE_PROPERTY,"int");
-				break;
-			case "PROD":
-				properties.put(SPRING_PROFILE_PROPERTY,"prod");
-				break;
+				case "DEV":
+					properties.put(SPRING_PROFILE_PROPERTY, "dev");
+					break;
+				case "INT":
+					properties.put(SPRING_PROFILE_PROPERTY, "int");
+					break;
+				case "PROD":
+					properties.put(SPRING_PROFILE_PROPERTY, "prod");
+					break;
 			}
 
 			application.setDefaultProperties(properties);
 		}
 
 		application.run(args);
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 }
