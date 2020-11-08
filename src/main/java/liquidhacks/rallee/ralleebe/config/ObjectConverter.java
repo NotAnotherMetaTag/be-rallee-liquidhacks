@@ -1,4 +1,4 @@
-package liquidhacks.rallee.ralleebe.model;
+package liquidhacks.rallee.ralleebe.config;
 
 import java.io.IOException;
 

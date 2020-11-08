@@ -12,7 +12,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
-@DynamoDBTypeConverted(converter = ObjectConverter.class)
+@DynamoDBTypeConverted(converter = liquidhacks.rallee.ralleebe.config.ObjectConverter.class)
 @DynamoDBTable(tableName = "User")
 public class UserDTO
 {
